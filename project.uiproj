@@ -1,0 +1,6 @@
+{
+  "Name": "DU_With_Mukesh",
+  "ProjectType": "Process",
+  "Description": "Blank Process",
+  "MainFile": "Main.xaml"
+}
