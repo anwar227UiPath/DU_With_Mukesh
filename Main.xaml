@@ -47,6 +47,7 @@
       <x:String>System.Numerics</x:String>
       <x:String>UiPath.IntelligentOCR.Activities.DataExtraction</x:String>
       <x:String>UiPath.DocumentProcessing.Contracts.DataExtraction</x:String>
+      <x:String>UiPath.IntelligentOCR.Activities.ValidationStation</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -104,7 +105,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="903.2,591.6566666666666" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="891.6,2607.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_DocumentPath" />
       <Variable x:TypeArguments="p4:Document" Name="DOM" />
@@ -113,31 +114,32 @@
       <Variable x:TypeArguments="p6:ClassificationResult[]" Name="ClassificationResults" />
       <Variable x:TypeArguments="p6:ClassificationResult[]" Name="My_ValidatedClassificationResult" />
       <Variable x:TypeArguments="p6:ExtractionResult" Name="ExtractionResult" />
+      <Variable x:TypeArguments="p6:ExtractionResult" Name="ValidatedExtractionResults" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="INIT" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="INIT" sap:VirtualizedContainerService.HintSize="511.2,606.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,88.8" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;INIT Started&quot;]" />
-      <Assign sap:VirtualizedContainerService.HintSize="416,88.8" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;INIT Started&quot;]" />
+      <Assign sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="Assign_1">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[str_DocumentPath]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">["C:\Users\anwar\OneDrive\Documents\UiPath\DU With Mukesh\Input_files\Invoice 2.pdf"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["C:\Users\anwar\OneDrive\Documents\UiPath\DU With Mukesh\Input_files\Receipts.pdf"]</InArgument>
         </Assign.Value>
       </Assign>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,80" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;INIT Completed&quot;]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;INIT Completed&quot;]" />
     </Sequence>
-    <Sequence DisplayName="Taxonomy" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Taxonomy" sap:VirtualizedContainerService.HintSize="511.2,56.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -148,7 +150,7 @@
       <p:LoadTaxonomy DisplayName="Load Taxonomy" sap:VirtualizedContainerService.HintSize="416,137.6" sap2010:WorkflowViewState.IdRef="LoadTaxonomy_1" Taxonomy="[taxonomy]" />
       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;Taxonomy Completed&quot;]" />
     </Sequence>
-    <Sequence DisplayName="Digitize " sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
+    <Sequence DisplayName="Digitize " sap:VirtualizedContainerService.HintSize="511.2,56.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -180,7 +182,7 @@
       </p:DigitizeDocument>
       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;Digitization Completed&quot;]" />
     </Sequence>
-    <Sequence DisplayName="Classification" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
+    <Sequence DisplayName="Classification" sap:VirtualizedContainerService.HintSize="511.2,56.8" sap2010:WorkflowViewState.IdRef="Sequence_7">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -245,7 +247,7 @@
       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="477.6,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Classifier Name = &quot;+ClassificationResults(0).ClassifierName+Environment.NewLine+&quot;Classification Confidence = &quot;+ClassificationResults(0).Confidence.ToString+ Environment.NewLine+&quot; Document Classified as =&quot;+ClassificationResults(0).DocumentTypeId]" />
       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="477.6,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Classification Completed&quot;]" />
     </Sequence>
-    <Sequence DisplayName="Validate  - Present Classification &amp; Train" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="Sequence_9">
+    <Sequence DisplayName="Validate  - Present Classification &amp; Train" sap:VirtualizedContainerService.HintSize="511.2,56.8" sap2010:WorkflowViewState.IdRef="Sequence_9">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -318,10 +320,10 @@
         </If.Else>
       </If>
     </Sequence>
-    <Sequence DisplayName="Extraction" sap:VirtualizedContainerService.HintSize="449.6,56.8" sap2010:WorkflowViewState.IdRef="Sequence_17">
+    <Sequence DisplayName="Extraction" sap:VirtualizedContainerService.HintSize="511.2,866.4" sap2010:WorkflowViewState.IdRef="Sequence_17">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -389,7 +391,17 @@
       </p7:DataExtractionScope>
       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="477.6,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Info" Message="[&quot;Extraction Completed&quot;]" />
     </Sequence>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="449.6,48" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+    <Sequence DisplayName="Validation" sap:VirtualizedContainerService.HintSize="511.2,836" sap2010:WorkflowViewState.IdRef="Sequence_18">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Info" Message="[&quot;Validation Started&quot;]" />
+      <p:PresentValidationStation FieldsValidationConfidence="{x:Null}" AutomaticExtractionResults="[ExtractionResult]" DisplayName="Present Validation Station" DocumentObjectModel="[DOM]" DocumentPath="[str_DocumentPath]" DocumentText="[str_DoumentText]" sap:VirtualizedContainerService.HintSize="416,404" sap2010:WorkflowViewState.IdRef="PresentValidationStation_1" ShowOnlyRelevantPageRange="False" Taxonomy="[taxonomy]" ValidatedExtractionResults="[ValidatedExtractionResults]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Info" Message="[&quot;Validation Completed&quot;]" />
+    </Sequence>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="511.2,48" sap2010:WorkflowViewState.IdRef="CommentOut_1">
       <ui:CommentOut.Body>
         <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="449.6,225.6" sap2010:WorkflowViewState.IdRef="Sequence_8">
           <sap:WorkflowViewStateService.ViewState>
